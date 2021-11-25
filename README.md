@@ -1,6 +1,7 @@
 # Calculator
-Cameron Pilchard
-Alex Whipple
-Eli Forssberg
 
 CIS 200
+
+Cameron Pilchard<br/>
+Alex Whipple<br/>
+Eli Forssberg<br/>
