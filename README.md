@@ -43,7 +43,7 @@ Elementary Operators
 	SUB			2			a1-a2		Subtraction
 	MULT		Inf						Multiplication
 	DIV			2			a1/a2		Division
-    EXP     	1						Exponential Function (e^x)
+ 	EXP     	1						Exponential Function (e^x)
     LN       	1						Natural Logarithm (base e)
     POW      	2			a1^a2		Exponentiation
     LOG      	2			base a1		Logarithm (base a1)
