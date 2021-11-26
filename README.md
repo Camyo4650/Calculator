@@ -28,6 +28,8 @@ Here is an example:
 ```
 FUNC(FUNC(ARG1),ARG2)
 ADD(1,2,3,4,5,EXP(1))
+HYPOT(1,2)
+
 ```
 Some functions require as little as one argument, where as some operators (w/ communicative properties) can support infinitely many.
 Non-communicative operators will **always** utilize operands left to right.
@@ -38,33 +40,35 @@ Non-communicative operators will **always** utilize operands left to right.
 |	Tag		|	Args	|	Order	|	Equiv.	|
 —————————————————————————————————————————————————————————————————————————
 Elementary Operators
-	ABS     	1					Absolute Value
-	ADD		Inf					Addition
-	SUB		2			a1-a2		Subtraction
-	MULT		Inf					Multiplication
-	DIV		2			a1/a2		Division
- 	EXP     	1					Exponential Function (e^x)
-	LN       	1					Natural Logarithm (base e)
-	POW      	2			a1^a2		Exponentiation
-	LOG      	2			base a1		Logarithm (base a1)
+	ABS     		1				Absolute Value
+	ADD			Inf				Addition
+	SUB			2		a1-a2		Subtraction
+	MULT			Inf				Multiplication
+	DIV			2		a1/a2		Division
+ 	EXP     		1				Exponential Function (e^x)
+	LN       		1				Natural Logarithm (base e)
+	POW      		2		a1^a2		Exponentiation
+	LOG      		2		base a1		Logarithm (base a1)
 						(arg a2)
-	SQRT     	1					Square Root
-	SQ      	1					Square
+	SQRT     		1				Square Root Shortcut
+	SQ      		1				Square Shortcut
+	HYPOT			1		a1 = a		Hypotenuse Shortcut
+						a2 = b
 
 Trig functions
-	SIN     	1					Sine
-	COS     	1					Cosine
-	TAN     	1					Tangent
-	SEC     	1					Secant
-	CSC     	1					Cosecant
-	COT     	1					Cotangent
+	SIN     		1				Sine
+	COS     		1				Cosine
+	TAN     		1				Tangent
+	SEC     		1				Secant
+	CSC     		1				Cosecant
+	COT     		1				Cotangent
 
-	ASIN     	1					Arcsine
-	ACOS     	1					Arccosine
-	ATAN     	1					Arctangent
-	ASEC     	1					Arcsecant
-	ACSC     	1					Arccosecant
-	ACOT     	1					Arccotangent
+	ASIN     		1				Arcsine
+	ACOS     		1				Arccosine
+	ATAN     		1				Arctangent
+	ASEC     		1				Arcsecant
+	ACSC     		1				Arccosecant
+	ACOT     		1				Arccotangent
 ```
 Every single function/operator listed has been extended into the complex field.
 
