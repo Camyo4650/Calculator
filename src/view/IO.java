@@ -22,15 +22,16 @@ public class IO {
         char Sum = '\u03A3';
         if (isRect) {
             String imag = "";
-            if (ans[1] < 0) imag = String.format("%.9f", ans[1]).replace("-", "-i");
-            else imag = "i"+ans[1];
-            System.out.println(String.format("%.9f", ans[0]) + " + " + imag);
+            if (ans[1] < 0) imag = " - i"+(""+ans[1]).substring(1);
+            else imag = " + i"+ans[1];
+            System.out.println(ans[0] + imag);
         } else
             System.out.println(String.format("%.9f", ans[0]) + " * exp(i"+String.format("%.9f", ans[1])+")");
         System.out.println();
     }
 
     public void displayError(String message) {
+        System.out.println();
         System.out.println("ERROR: " + message);
     }
 }

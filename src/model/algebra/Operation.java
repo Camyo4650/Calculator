@@ -56,19 +56,61 @@ public class Operation extends Expression {
             solution = multiply(cartesians);
             break;
         case DIV:
-            solution = divide(polars[0], polars[1]);
+            solution = divide(cartesians[0], cartesians[1]);
             break;
         case EXP:
             solution = exponential(cartesians[0]);
             break;
         case POW:
-            solution = exponential(polars[0], polars[1]);
+            solution = exponential(cartesians[0], cartesians[1]);
             break;
         case LN:
-            solution = logarithm(polars[0]);
+            solution = logarithm(cartesians[0]);
             break;
         case LOG:
-            solution = logarithm(polars[0], polars[1]);
+            solution = logarithm(cartesians[0], cartesians[1]);
+            break;
+        case SQRT:
+            solution = sqrt(cartesians[0]);
+            break;
+        case SQ:
+            solution = square(cartesians[0]);
+            break;
+        case SIN:
+            solution = Trig.sin(cartesians[0]);
+            break;
+        case COS:
+            solution = Trig.cos(cartesians[0]);
+            break;
+        case TAN:
+            solution = Trig.tan(cartesians[0]);
+            break;
+        case SEC:
+            solution = Trig.sec(cartesians[0]);
+            break;
+        case CSC:
+            solution = Trig.csc(cartesians[0]);
+            break;
+        case COT:
+            solution = Trig.cot(cartesians[0]);
+            break;
+        case ASIN:
+            solution = Trig.asin(cartesians[0]);
+            break;
+        case ACOS:
+            solution = Trig.acos(cartesians[0]);
+            break;
+        case ATAN:
+            solution = Trig.atan(cartesians[0]);
+            break;
+        case ASEC:
+            solution = Trig.asec(cartesians[0]);
+            break;
+        case ACSC:
+            solution = Trig.acsc(cartesians[0]);
+            break;
+        case ACOT:
+            solution = Trig.acot(cartesians[0]);
             break;
         case DER:
             break;

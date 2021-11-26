@@ -95,8 +95,8 @@ public class NumberSystem {
 
     /**
      * 
-     * @param polar1
-     * @param polar2
+     * @param cartesian1
+     * @param cartesian2
      * @return
      */
     protected static double[] multiply(double[] cartesian1, double[] cartesian2) {
@@ -107,8 +107,8 @@ public class NumberSystem {
 
     /**
      * 
-     * @param polars
-     * @return
+     * @param cartesians
+     * @return cartesian
      */
     protected static double[] multiply(double[] ... cartesians) {
         double[][] polars = toPolar(cartesians);
@@ -122,8 +122,8 @@ public class NumberSystem {
 
     /**
      * 
-     * @param polar1
-     * @param polar2
+     * @param cartesian1
+     * @param cartesian2
      * @return
      */
     protected static double[] divide(double[] cartesian1, double[] cartesian2) {
@@ -145,7 +145,7 @@ public class NumberSystem {
     /**
      * 
      * @param cartesian
-     * @return polar
+     * @return cartesian
      */
     protected static double[] exponential(double[] cartesian) {
         return toCartesian(new double[] {Math.exp(cartesian[0]), cartesian[1]});
@@ -153,17 +153,23 @@ public class NumberSystem {
 
     /**
      * 
-     * @param polar1
-     * @param polar2
+     * @param cartesian1
+     * @param cartesian2
      * @return
      */
     protected static double[] exponential(double[] cartesian1, double[] cartesian2) {
-        return exponential(multiply(logarithm(cartesian1), cartesian2));
+        double[] polar1 = toPolar(cartesian1);
+        double[] polar2 = toPolar(cartesian2);
+        if (polar1[0] != 0) return exponential(multiply(logarithm(cartesian1), cartesian2));
+        else {
+            if (polar2[0] != 0 && cartesian2[1] == 0 && cartesian2[0] > 0) return new double[] {0,0};
+            else throw new ArithmeticException("LOGARITHM UNDEFINED AT ZERO");
+        }
     }
 
     /**
      * 
-     * @param polar
+     * @param cartesian
      * @return cartesian
      */
     protected static double[] logarithm(double[] cartesian) throws ArithmeticException {
@@ -182,7 +188,21 @@ public class NumberSystem {
         return divide(logarithm(cartesian1), logarithm(cartesian2));
     }
 
+    /**
+     * 
+     * @param cartesian1
+     * @return
+     */
     protected static double[] sqrt(double[] cartesian1) {
         return exponential(cartesian1, new double[] {0.5,0});
+    }
+
+    /**
+     * 
+     * @param cartesian1
+     * @return
+     */
+    protected static double[] square(double[] cartesian1) {
+        return exponential(cartesian1, new double[] {2,0});
     }
 }

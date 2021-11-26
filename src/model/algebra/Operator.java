@@ -10,6 +10,8 @@ public enum Operator {
     LN      (1),
     POW     (2),
     LOG     (2),
+    SQRT    (1),
+    SQ      (1),
 
     // Trig functions
         SIN     (1),

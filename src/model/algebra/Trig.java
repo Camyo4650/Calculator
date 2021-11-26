@@ -3,7 +3,7 @@ package model.algebra;
 import model.NumberSystem;
 
 public class Trig extends NumberSystem {
-    public static double[] sin(double[] cartesian) {
+    protected static double[] sin(double[] cartesian) {
         return  divide(
                     sub(
                         exponential(multiply(cartesian, new double[] {0,1}))
@@ -14,7 +14,7 @@ public class Trig extends NumberSystem {
                     new double[] {0,2});
     }
 
-    public static double[] cos(double[] cartesian) {
+    protected static double[] cos(double[] cartesian) {
         return  divide(
                     add(
                         exponential(multiply(cartesian, new double[] {0,1}))
@@ -26,7 +26,7 @@ public class Trig extends NumberSystem {
                 );
     }
 
-    public static double[] tan(double[] cartesian) {
+    protected static double[] tan(double[] cartesian) {
         return  multiply(
                     divide(
                         sub(
@@ -45,7 +45,7 @@ public class Trig extends NumberSystem {
                 );
     }
 
-    public static double[] sec(double[] cartesian) {
+    protected static double[] sec(double[] cartesian) {
         return  divide(
                     new double[] {1,0}
                     , 
@@ -53,7 +53,7 @@ public class Trig extends NumberSystem {
                 );
     }
 
-    public static double[] csc(double[] cartesian) {
+    protected static double[] csc(double[] cartesian) {
         return  divide(
                     new double[] {1,0}
                     , 
@@ -61,7 +61,7 @@ public class Trig extends NumberSystem {
                 );
     }
 
-    public static double[] cot(double[] cartesian) {
+    protected static double[] cot(double[] cartesian) {
         return  divide(
                     new double[] {1,0}
                     , 
@@ -71,31 +71,31 @@ public class Trig extends NumberSystem {
 
 
 
-    public static double[] asin(double[] cartesian) {
+    protected static double[] asin(double[] cartesian) {
         return  multiply(
                     new double[] {0,1}
                     , 
                     logarithm(
-                        add(
+                        sub(
                             sqrt(
                                 sub(
-                                    new double[] {-1,0}
+                                    new double[] {1,0}
                                     , 
-                                    cartesian
+                                    square(cartesian)
                                 )
                             )
                             ,
                             multiply(
                                 cartesian
                                 , 
-                                new double[] {0,-1}
+                                new double[] {0,1}
                             )
                         )
                     )
                 );
     }
     
-    public static double[] acos(double[] cartesian) {
+    protected static double[] acos(double[] cartesian) {
         return  sub(
                     new double[] {Math.PI/2,0}
                     ,
@@ -103,7 +103,7 @@ public class Trig extends NumberSystem {
                 );
     }
 
-    public static double[] atan(double[] cartesian) {
+    protected static double[] atan(double[] cartesian) {
         return  multiply(
                     new double[] {0, -0.5}
                     ,
@@ -125,6 +125,18 @@ public class Trig extends NumberSystem {
                         )
                     )
                 );
+    }
+
+    protected static double[] asec(double[] cartesian) {
+        return  acos(divide(new double[] {1,0}, cartesian));
+    }
+
+    protected static double[] acsc(double[] cartesian) {
+        return  asin(divide(new double[] {1,0}, cartesian));
+    }
+
+    protected static double[] acot(double[] cartesian) {
+        return  atan(divide(new double[] {1,0}, cartesian));
     }
     
 }

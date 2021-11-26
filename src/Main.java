@@ -3,6 +3,7 @@ import view.*;
 
 public class Main {
     public static void main(String[] args) {
+        boolean debug = false;
         Calculator calc = new Calculator();
         IO io = new IO();
         // psuedo-code to combine classes
@@ -13,7 +14,8 @@ public class Main {
                 io.displayAnswer(answer, true);
             } catch (Exception e) {
                 io.displayError(e.getMessage());
-                e.printStackTrace();
+                if (debug)
+                    e.printStackTrace();
             }
         }
     }
