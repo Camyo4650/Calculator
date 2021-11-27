@@ -50,12 +50,13 @@ Elementary Operators
 	POW      		2		a1^a2		Exponentiation
 	LOG      		2		base a1		Logarithm (base a1)
 						(arg a2)
-	SQRT     		1				Square Root Shortcut
-	SQ      		1				Square Shortcut
-	HYPOT			1		a1 = a		Hypotenuse Shortcut
-						a2 = b
 
 Trig functions
+	SQRT     		1				Square Root Shortcut
+	SQ      		1				Square Shortcut
+	HYPOT			Inf				Hypotenuse Shortcut
+	CIRC			2		a1 = r		sqrt(r^2 - x^2)
+						a2 = x
 	SIN     		1				Sine
 	COS     		1				Cosine
 	TAN     		1				Tangent
