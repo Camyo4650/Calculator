@@ -1,8 +1,11 @@
 package view;
 
-import java.text.DecimalFormat;
 import java.util.Scanner;
 
+/**
+ * This class possesses a field {@link java.util.Scanner#Scanner(java.io.InputStream)} that is used for console access.
+ * @author []
+ */
 public class IO {
 
     Scanner s;

@@ -40,7 +40,6 @@ public class Operation extends Expression {
         double[][] cartesians = new double[operations.size()][2];
         for (int i = 0; i < operations.size(); i++)
             cartesians[i] = operations.get(i).solve();
-        double[][] polars = toPolar(cartesians);
         double[] solution = new double[] {0, 0};
         switch (operator) {
         case ABS:
@@ -75,6 +74,12 @@ public class Operation extends Expression {
             break;
         case SQ:
             solution = square(cartesians[0]);
+            break;
+        case HYPOT:
+            solution = Trig.hypotenuse(cartesians);
+            break;
+        case CIRC:
+            solution = Trig.circle(cartesians[0], cartesians[1]);
             break;
         case SIN:
             solution = Trig.sin(cartesians[0]);
@@ -127,9 +132,5 @@ public class Operation extends Expression {
         }
         return solution;
     }
-/*
-    public double solve(double x) {
-        
-    }
-*/
+
 }

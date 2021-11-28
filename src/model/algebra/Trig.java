@@ -3,6 +3,33 @@ package model.algebra;
 import model.NumberSystem;
 
 public class Trig extends NumberSystem {
+
+    protected static double[] hypotenuse(double[][] cartesians) {
+        return  sqrt(
+                    add(
+                        square(cartesians)
+                    )
+                );
+    }
+
+    protected static double[] circle(double[] cartesian1, double[] cartesian2) {
+        return  sqrt(
+                    sub(
+                        square(cartesian1)
+                        ,
+                        square(cartesian2)
+                    )
+                );
+    }
+
+    protected static double[][] square(double[][] cartesians) {
+        double[][] result = new double[cartesians.length][2];
+        for (int i = 0; i < cartesians.length; i++) {
+            result[i] = square(cartesians[i]);
+        }
+        return result;
+    }
+
     protected static double[] sin(double[] cartesian) {
         return  divide(
                     sub(

@@ -56,7 +56,8 @@ public class NumberSystem {
      * @return
      */
     protected static double[] abs(double[] cartesian) {
-        return new double[] {Math.abs(cartesian[0]) + Math.abs(cartesian[1]), 0};
+        double[] polar = toPolar(cartesian);
+        return new double[] {polar[0], 0};
     }
 
     /**
@@ -185,7 +186,7 @@ public class NumberSystem {
      * @return
      */
     protected static double[] logarithm(double[] cartesian1, double[] cartesian2) {
-        return divide(logarithm(cartesian1), logarithm(cartesian2));
+        return divide(logarithm(cartesian2), logarithm(cartesian1));
     }
 
     /**

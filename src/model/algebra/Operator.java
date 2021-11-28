@@ -14,6 +14,8 @@ public enum Operator {
     SQ      (1),
 
     // Trig functions
+        HYPOT   (2),
+        CIRC    (2),
         SIN     (1),
         COS     (1),
         TAN     (1),
