@@ -1,4 +1,4 @@
-package model.algebra;
+package model.arithmetic;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class Operation extends Expression {
     }
 
     @Override
-    public double[] solve(boolean isPolar) throws ArithmeticException {
+    public double[] solve(boolean isPolar) throws Exception {
         return isPolar ? toPolar(this.solve()) : this.solve();
     }
 
@@ -36,11 +36,10 @@ public class Operation extends Expression {
      * @throws ArithmeticException
      */
     @Override
-    protected double[] solve() throws ArithmeticException {
+    protected double[] solve() throws Exception {
         double[][] cartesians = new double[operations.size()][2];
         for (int i = 0; i < operations.size(); i++)
             cartesians[i] = operations.get(i).solve();
-        double[][] polars = toPolar(cartesians);
         double[] solution = new double[] {0, 0};
         switch (operator) {
         case ABS:
@@ -52,7 +51,7 @@ public class Operation extends Expression {
         case SUB:
             solution = sub(cartesians[0], cartesians[1]);
             break;
-        case MUL:
+        case MULT:
             solution = multiply(cartesians);
             break;
         case DIV:
@@ -75,6 +74,12 @@ public class Operation extends Expression {
             break;
         case SQ:
             solution = square(cartesians[0]);
+            break;
+        case HYPOT:
+            solution = Trig.hypotenuse(cartesians);
+            break;
+        case CIRC:
+            solution = Trig.circle(cartesians[0], cartesians[1]);
             break;
         case SIN:
             solution = Trig.sin(cartesians[0]);
@@ -112,6 +117,18 @@ public class Operation extends Expression {
         case ACOT:
             solution = Trig.acot(cartesians[0]);
             break;
+        case RAD:
+            solution = Trig.toRadians(cartesians[0]);
+            break;
+        case DEG:
+            solution = Trig.toDegrees(cartesians[0]);
+            break;
+        case REAL:
+            solution = real(cartesians[0]);
+            break;
+        case IMAG:
+            solution = imaginary(cartesians[0]);
+            break;
         case DER:
             break;
         case FAC:
@@ -127,9 +144,5 @@ public class Operation extends Expression {
         }
         return solution;
     }
-/*
-    public double solve(double x) {
-        
-    }
-*/
+
 }

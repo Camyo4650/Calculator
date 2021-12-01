@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-import model.algebra.*;
+import model.arithmetic.*;
 import view.Screen;
 
 public class Calculator {
@@ -12,7 +12,7 @@ public class Calculator {
     private StringProcessor processor;
 
     public Calculator() {
-        // screen = new Screen();
+        this.screen = new Screen();
         this.history = new ArrayList<>();
         this.history.add(new Constant(new double[] {0,0}));
         this.processor = new StringProcessor();

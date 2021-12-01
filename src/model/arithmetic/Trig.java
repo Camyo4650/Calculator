@@ -1,9 +1,37 @@
-package model.algebra;
+package model.arithmetic;
 
 import model.NumberSystem;
 
 public class Trig extends NumberSystem {
+
+    protected static double[] hypotenuse(double[][] cartesians) {
+        return  sqrt(
+                    add(
+                        square(cartesians)
+                    )
+                );
+    }
+
+    protected static double[] circle(double[] cartesian1, double[] cartesian2) {
+        return  sqrt(
+                    sub(
+                        square(cartesian1)
+                        ,
+                        square(cartesian2)
+                    )
+                );
+    }
+
+    protected static double[][] square(double[][] cartesians) {
+        double[][] result = new double[cartesians.length][2];
+        for (int i = 0; i < cartesians.length; i++) {
+            result[i] = square(cartesians[i]);
+        }
+        return result;
+    }
+
     protected static double[] sin(double[] cartesian) {
+
         return  divide(
                     sub(
                         exponential(multiply(cartesian, new double[] {0,1}))
@@ -139,4 +167,14 @@ public class Trig extends NumberSystem {
         return  atan(divide(new double[] {1,0}, cartesian));
     }
     
+    protected static double[] toDegrees(double[] cartesian) throws Exception {
+        if (cartesian[1] != 0) throw new IllegalArgumentException("NUMBER MUST NOT BE COMPLEX");
+        return  new double[] {Math.toDegrees(cartesian[0]), 0};
+    }
+    
+    protected static double[] toRadians(double[] cartesian) throws Exception {
+        if (cartesian[1] != 0) throw new IllegalArgumentException("NUMBER MUST NOT BE COMPLEX");
+        return  new double[] {Math.toRadians(cartesian[0]), 0};
+    }
+
 }

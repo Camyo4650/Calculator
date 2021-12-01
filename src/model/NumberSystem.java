@@ -1,11 +1,24 @@
 package model;
 
+/**
+ * These are all the corresponding functions to the Operators listed 
+ * in the enumerator that take in complex numbers as cartesian coordinates 
+ * represented as double arrays with length 2. This class stores static 
+ * methods for calculation.
+ * Every method here returns a new double array with the modified content. The original
+ * double arrays passed are not modified.
+ * @author Cameron Pilchard
+ */
 public class NumberSystem {
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * This method converts a cartesian coordinate into the polar counterpart.
+     * Conversion to polar form is done by using Euler's formula.
+     * This is computed by the hypotenuse of the real part and the imaginary part
+     * of the cartesian coordinate, and the ordinate is the argument, or the angle
+     * of the complex number.
+     * @param cartesian The cartesian coordinate
+     * @return Corresponding polar coordinate
      */
     public static double[] toPolar(double[] cartesian) {
         double real = cartesian[0];
@@ -14,9 +27,12 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesians
-     * @return
+     * This is the overloaded method of {@link this#toPolar(double[])} that converts multiple cartesian 
+     * coordinates into polar coordinates simultaneously, returned 
+     * in proper order.
+     * Conversion to polar form is done by using Euler's formula.
+     * @param cartesians All cartesian coordinates
+     * @return Every corresponding polar coordinate respectively 
      */
     public static double[][] toPolar(double[] ... cartesians) {
         double[][] polars = new double[cartesians.length][2];
@@ -27,9 +43,11 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param polar
-     * @return
+     * This is the inverse function of {@link this#toPolar(double[])} that converts polar coordinates into
+     * cartesian coordinates.
+     * Conversion to cartesian form is done by using Euler's formula.
+     * @param polar The polar coordinate
+     * @return Corresponding cartesian coordinate
      */
     public static double[] toCartesian(double[] polar) {
         double radius = polar[0];
@@ -38,9 +56,12 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param polars
-     * @return
+     * This is the overloaded method of {@link this#toCartesian(double[])} that converts multiple polar 
+     * coordinates into cartesian coordinates simultaneously, returned 
+     * in proper order.
+     * Conversion to cartesian form is done by using Euler's formula.
+     * @param polars All polar coordinates
+     * @return Every corresponding cartesian coordinate respectively
      */
     public static double[][] toCartesian(double[] ... polars) {
         double[][] cartesians = new double[polars.length][2];
@@ -51,13 +72,35 @@ public class NumberSystem {
     }
 
     /**
+     * The absolute value of any complex number.
+     * The absolute value of a complex number is its radius. 
+     * @param cartesian The cartesian coordinate
+     * @return The radius (absolute value)
+     */
+    protected static double[] abs(double[] cartesian) {
+        double[] polar = toPolar(cartesian);
+        return new double[] {polar[0], 0};
+    }
+
+    /**
+     * Returns the real number from a cartesian coordinate
+     * @param cartesian The cartesian coordinate
+     * @return The new 
+     */
+    protected static double[] real(double[] cartesian) {
+        return new double[] {cartesian[0], 0};
+    }
+
+    /**
      * 
      * @param cartesian
      * @return
      */
-    protected static double[] abs(double[] cartesian) {
-        return new double[] {Math.abs(cartesian[0]) + Math.abs(cartesian[1]), 0};
+    protected static double[] imaginary(double[] cartesian) {
+        return new double[] {cartesian[1], 0};
     }
+
+    
 
     /**
      * 
@@ -185,7 +228,7 @@ public class NumberSystem {
      * @return
      */
     protected static double[] logarithm(double[] cartesian1, double[] cartesian2) {
-        return divide(logarithm(cartesian1), logarithm(cartesian2));
+        return divide(logarithm(cartesian2), logarithm(cartesian1));
     }
 
     /**

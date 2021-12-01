@@ -1,10 +1,10 @@
-package model.algebra;
+package model.arithmetic;
 
 public enum Operator {
     ABS     (1),
     ADD     (-1),
     SUB     (2),
-    MUL     (-1),
+    MULT    (-1),
     DIV     (2),
     EXP     (1),
     LN      (1),
@@ -14,6 +14,8 @@ public enum Operator {
     SQ      (1),
 
     // Trig functions
+        HYPOT   (-1),
+        CIRC    (2),
         SIN     (1),
         COS     (1),
         TAN     (1),
@@ -27,6 +29,12 @@ public enum Operator {
         ASEC     (1),
         ACSC     (1),
         ACOT     (1),
+
+    REAL(1),
+    IMAG(1),
+
+    DEG(1),
+    RAD(1),
 
     LIM     (1),
     DER     (1),
