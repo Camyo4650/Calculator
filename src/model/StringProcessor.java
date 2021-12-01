@@ -1,12 +1,28 @@
+/** Final CIS 200 Project
+ * Cameron Pilchard
+ * Eli Forssberg
+ * Alex Whipple
+ * 
+ * This class will parse String input in preparation of computation.  
+ */
+
 package model;
 
 import java.util.ArrayList;
 
-import model.algebra.Operator;
-import model.algebra.Constant;
-import model.algebra.Expression;
-import model.algebra.Operation;
+import model.arithmetic.Constant;
+import model.arithmetic.Expression;
+import model.arithmetic.Operation;
+import model.arithmetic.Operator;
 
+/**
+ * This class contains three fields that represent delimiters:<br />
+ *  L : the left  bracket delimiter<br />
+ *  D : the delimiting separator of arguments<br />
+ *  R : the right bracket delimiter<br />
+ * This format allows this parser to easily digest and calculate with ease.
+ * @author Cameron Pilchard
+ */
 public class StringProcessor {
     private char L; // delimiting left bracket
     private char D; // delimiter
@@ -41,10 +57,10 @@ public class StringProcessor {
         int lvl = 0;
         int lowest = 0;
         for (int i = 0; i < expr.length(); i++) {
-            if (expr.charAt(i) == L) lvl--;
-            if (expr.charAt(i) == R) lvl++;
+            if (expr.charAt(i) == L) lvl--; // every left  bracket, lower the level
+            if (expr.charAt(i) == R) lvl++; // every right bracket, raise the level
             
-            if (lvl < lowest) lowest = lvl;
+            if (lvl < lowest) lowest = lvl; // save the lowest level
 
             // error handling
             if (lvl > 0) throw new IllegalArgumentException("MISPLACED TOKEN \""+R+"\", "+(i+1));
@@ -105,12 +121,12 @@ public class StringProcessor {
                 for (int i = 1; i < args.size(); i++) {
                     double real = 0;
                     double imag = 0;
-                    if (args.get(i).indexOf('i') != -1) {
-                        String[] complex = args.get(i).split("i");
-                        real = Double.parseDouble(complex[0]);
-                        imag = Double.parseDouble(complex[1]);
+                    if (args.get(i).indexOf(':') != -1) {
+                        String[] complex = args.get(i).split(":");
+                        real = Double.parseDouble(tokenize(complex[0]));
+                        imag = Double.parseDouble(tokenize(complex[1]));
                     } else 
-                        real = Double.parseDouble(args.get(i));
+                        real = Double.parseDouble(tokenize(args.get(i)));
                     expressions[i-1] = new Constant(new double[] {real, imag});
                 }
             } else {
@@ -123,16 +139,32 @@ public class StringProcessor {
         } else {
             double real = 0;
             double imag = 0;
-            if (expr.indexOf('i') != -1) {
-                String[] complex = expr.split("i");
-                real = Double.parseDouble(complex[0]);
-                imag = Double.parseDouble(complex[1]);
+            if (expr.indexOf(':') != -1) {
+                String[] complex = expr.split(":");
+                real = Double.parseDouble(tokenize(complex[0]));
+                imag = Double.parseDouble(tokenize(complex[1]));
             } else 
-                real = Double.parseDouble(expr);
+                real = Double.parseDouble(tokenize(expr));
             op = new Constant(new double[] {real, imag});
         }
         return op;
     }
     
+    public String tokenize(String input) {
+        String result = input;
+        String[] tokens = {
+            "PI",
+            "E"
+        };
+        double[] vals = {
+            Math.PI,
+            Math.E
+        };
+        for (int i = 0; i < tokens.length; i++) {
+            String token = tokens[i];
+            if (result.equalsIgnoreCase(token)) result = vals[i]+"";
+        }
+        return result;
+    }
     // private String[] 
 }

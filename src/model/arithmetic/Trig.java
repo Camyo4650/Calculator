@@ -1,4 +1,4 @@
-package model.algebra;
+package model.arithmetic;
 
 import model.NumberSystem;
 
@@ -31,6 +31,7 @@ public class Trig extends NumberSystem {
     }
 
     protected static double[] sin(double[] cartesian) {
+
         return  divide(
                     sub(
                         exponential(multiply(cartesian, new double[] {0,1}))
@@ -166,4 +167,14 @@ public class Trig extends NumberSystem {
         return  atan(divide(new double[] {1,0}, cartesian));
     }
     
+    protected static double[] toDegrees(double[] cartesian) throws Exception {
+        if (cartesian[1] != 0) throw new IllegalArgumentException("NUMBER MUST NOT BE COMPLEX");
+        return  new double[] {Math.toDegrees(cartesian[0]), 0};
+    }
+    
+    protected static double[] toRadians(double[] cartesian) throws Exception {
+        if (cartesian[1] != 0) throw new IllegalArgumentException("NUMBER MUST NOT BE COMPLEX");
+        return  new double[] {Math.toRadians(cartesian[0]), 0};
+    }
+
 }

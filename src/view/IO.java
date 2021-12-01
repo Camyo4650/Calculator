@@ -13,7 +13,7 @@ public class IO {
 
     public IO() {
         s = new Scanner(System.in);
-        roundOff = 1e-14;
+        roundOff = 3e-13;
     }
 
     public String readInput() {
@@ -30,8 +30,14 @@ public class IO {
             String imag = "";
             if (Math.abs(ans[0]) > roundOff) real = (""+ans[0]);
             else real = "0";
-            if (ans[1] < 0) imag = " - i"+(""+ans[1]).substring(1);
-            else imag = " + i"+ans[1];
+            if (Math.abs(ans[1]) != 1) {
+                if (ans[1] < 0) imag = " - "+(""+ans[1]).substring(1);
+                else imag = " + "+ans[1];
+                imag += "i";
+            } else {
+                if (ans[1] > 0) imag += " + i";
+                else imag += " - i";
+            }
             if (Math.abs(ans[1]) > roundOff) { // just to round down to zero
                 System.out.println(real + imag);
             } else {

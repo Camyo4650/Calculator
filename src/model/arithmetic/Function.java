@@ -1,6 +1,6 @@
-package model.algebra;
+package model.arithmetic;
 
-import model.algebra.Operation;
+import model.arithmetic.Operation;
 
 public class Function {
     /*

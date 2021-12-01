@@ -1,6 +1,6 @@
 package model.calculus;
 
-import model.algebra.Operation;
+import model.arithmetic.Operation;
 
 public class Calculus {
     /*
