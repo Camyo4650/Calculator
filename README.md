@@ -11,7 +11,8 @@ Complex numbers require the following format:
 ```
 [real]i[imag] = real + (i * imag)
 ```
-where ```
+where 
+```
 i = √(-1)
 ```
 example:
