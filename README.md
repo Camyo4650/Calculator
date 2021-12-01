@@ -9,7 +9,7 @@ Eli Forssberg<br/>
 ## Console Commands
 Complex numbers require the following format:
 ```
-[real]i[imag] = real + (i * imag)
+[real]:[imag] = real + (i * imag)
 ```
 where 
 ```
@@ -17,10 +17,10 @@ i = √(-1)
 ```
 example:
 ```diff
-0.707i0.707	= 0.707 + i0.707
-0i-1		= 0 - i
+0.707:0.707	= 0.707 + i0.707
+0:-1		= 0 - i
 ```
-The 'i' is a delimiter to separate the imaginary number from the real number.
+The ':' is a delimiter to separate the imaginary number from the real number.
 
 Mathematical operators are represented as functions.
 Operators take on the following format:
@@ -61,6 +61,11 @@ Trig functions
 	HYPOT			Inf				Hypotenuse Shortcut
 	CIRC			2		a1 = r		sqrt(r^2 - x^2)
 						a2 = x
+	REAL			1				Real (abscissa)
+	IMAG			1				Imaginary (ordinate)
+	RAD			1				Convert to Radians
+	DEG			1				Convert to Degrees
+	
 	SIN     		1				Sine
 	COS     		1				Cosine
 	TAN     		1				Tangent
