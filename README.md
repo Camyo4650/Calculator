@@ -11,6 +11,9 @@ Complex numbers require the following format:
 ```
 [real]i[imag] = real + (i * imag)
 ```
+where ```
+i = √(-1)
+```
 example:
 ```diff
 0.707i0.707	= 0.707 + i0.707
