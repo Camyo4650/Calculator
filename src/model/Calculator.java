@@ -3,16 +3,17 @@ package model;
 import java.util.ArrayList;
 
 import model.arithmetic.*;
-import view.Screen;
+import view.Window;
 
 public class Calculator {
     private ArrayList<Expression> history;
     private int searchIndex;
-    private Screen screen;
+    private Window window;
     private StringProcessor processor;
 
     public Calculator() {
-        this.screen = new Screen();
+        this.window = new Window();
+        window.setVisible(true);
         this.history = new ArrayList<>();
         this.history.add(new Constant(new double[] {0,0}));
         this.processor = new StringProcessor();

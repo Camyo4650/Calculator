@@ -76,52 +76,52 @@ public class Operation extends Expression {
             solution = square(cartesians[0]);
             break;
         case HYPOT:
-            solution = Trig.hypotenuse(cartesians);
+            solution = hypotenuse(cartesians);
             break;
         case CIRC:
-            solution = Trig.circle(cartesians[0], cartesians[1]);
+            solution = circle(cartesians[0], cartesians[1]);
             break;
         case SIN:
-            solution = Trig.sin(cartesians[0]);
+            solution = sin(cartesians[0]);
             break;
         case COS:
-            solution = Trig.cos(cartesians[0]);
+            solution = cos(cartesians[0]);
             break;
         case TAN:
-            solution = Trig.tan(cartesians[0]);
+            solution = tan(cartesians[0]);
             break;
         case SEC:
-            solution = Trig.sec(cartesians[0]);
+            solution = sec(cartesians[0]);
             break;
         case CSC:
-            solution = Trig.csc(cartesians[0]);
+            solution = csc(cartesians[0]);
             break;
         case COT:
-            solution = Trig.cot(cartesians[0]);
+            solution = cot(cartesians[0]);
             break;
         case ASIN:
-            solution = Trig.asin(cartesians[0]);
+            solution = asin(cartesians[0]);
             break;
         case ACOS:
-            solution = Trig.acos(cartesians[0]);
+            solution = acos(cartesians[0]);
             break;
         case ATAN:
-            solution = Trig.atan(cartesians[0]);
+            solution = atan(cartesians[0]);
             break;
         case ASEC:
-            solution = Trig.asec(cartesians[0]);
+            solution = asec(cartesians[0]);
             break;
         case ACSC:
-            solution = Trig.acsc(cartesians[0]);
+            solution = acsc(cartesians[0]);
             break;
         case ACOT:
-            solution = Trig.acot(cartesians[0]);
+            solution = acot(cartesians[0]);
             break;
         case RAD:
-            solution = Trig.toRadians(cartesians[0]);
+            solution = toRadians(cartesians[0]);
             break;
         case DEG:
-            solution = Trig.toDegrees(cartesians[0]);
+            solution = toDegrees(cartesians[0]);
             break;
         case REAL:
             solution = real(cartesians[0]);
