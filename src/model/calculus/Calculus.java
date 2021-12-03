@@ -3,13 +3,19 @@ package model.calculus;
 import model.arithmetic.Operation;
 
 public class Calculus {
-    /*
-    public static Function derive(Operation op) {
-
+    /**
+    public static Series derive(Series series) {
+        series.coefficient = 
     }
 
-    public static Function integrate(Operation op) {
+    public static Function derive(Function expr, double[] x) {
+        
+    }
+
+    public static Expression integrate(Operation op) {
 
     }
-    */
+    
+    private static 
+     */
 }

@@ -85,16 +85,16 @@ public class NumberSystem {
     /**
      * Returns the real number from a cartesian coordinate
      * @param cartesian The cartesian coordinate
-     * @return The new 
+     * @return The abscissa of the complex number
      */
     protected static double[] real(double[] cartesian) {
         return new double[] {cartesian[0], 0};
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * Returns the imaginary number from a cartesian coordinate
+     * @param cartesian The cartesian coordinate
+     * @return The ordinate of the complex number
      */
     protected static double[] imaginary(double[] cartesian) {
         return new double[] {cartesian[1], 0};
@@ -103,19 +103,19 @@ public class NumberSystem {
     
 
     /**
-     * 
-     * @param cartesian1
-     * @param cartesian2
-     * @return
+     * Basic addition between two cartesian coordinates
+     * @param cartesian1 Cartesian coordinate
+     * @param cartesian2 Cartesian coordinate
+     * @return The sum as a new cartesian coordinate
      */
     protected static double[] add(double[] cartesian1, double[] cartesian2) {
         return new double[] {cartesian1[0] + cartesian2[0], cartesian1[1] + cartesian2[1]};
     }
 
     /**
-     * 
-     * @param cartesians
-     * @return
+     * Basic addition supported for infinitely many coordinates (since addition operator is commutative)
+     * @param cartesians Every coordinate
+     * @return The sum as a new cartesian coordinate
      */
     protected static double[] add(double[] ... cartesians) {
         double[] result = cartesians[0];
@@ -127,20 +127,20 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian1
-     * @param cartesian2
-     * @return
+     * Basic subtraction between two cartesian numbers (ordered left to right)
+     * @param cartesian1 The minuend
+     * @param cartesian2 The subtrahend
+     * @return The difference as a new cartesian coordinate
      */
     protected static double[] sub(double[] cartesian1, double[] cartesian2) {
         return new double[] {cartesian1[0] - cartesian2[0], cartesian1[1] - cartesian2[1]};
     }
 
     /**
-     * 
-     * @param cartesian1
-     * @param cartesian2
-     * @return
+     * Basic multiplication between two cartesian coordinates
+     * @param cartesian1 Cartesian coordinate
+     * @param cartesian2 Cartesian coordinate
+     * @return The product as a new cartesian coordinate
      */
     protected static double[] multiply(double[] cartesian1, double[] cartesian2) {
         double[] polar1 = toPolar(cartesian1);
@@ -149,9 +149,9 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesians
-     * @return cartesian
+     * Basic multiplication supported for infinitely many coordinates (since multiplication operator is commutative)
+     * @param cartesians Every coordinate
+     * @return The product as a new cartesian coordinate
      */
     protected static double[] multiply(double[] ... cartesians) {
         double[][] polars = toPolar(cartesians);
@@ -164,10 +164,10 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian1
-     * @param cartesian2
-     * @return
+     * Basic division between two cartesian coordinates
+     * @param cartesian1 The dividend
+     * @param cartesian2 The divisor
+     * @return The quotient as a new cartesian coordinate
      */
     protected static double[] divide(double[] cartesian1, double[] cartesian2) {
         double[] polar1 = toPolar(cartesian1);
@@ -186,19 +186,19 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return cartesian
+     * Basic exponential function (e^x where e is the base of the natural log)
+     * @param cartesian The power
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] exponential(double[] cartesian) {
         return toCartesian(new double[] {Math.exp(cartesian[0]), cartesian[1]});
     }
 
     /**
-     * 
-     * @param cartesian1
-     * @param cartesian2
-     * @return
+     * Basic exponentiation (a^x) between two cartesian coordinates
+     * @param cartesian1 The base
+     * @param cartesian2 The power
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] exponential(double[] cartesian1, double[] cartesian2) {
         double[] polar1 = toPolar(cartesian1);
@@ -211,9 +211,9 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return cartesian
+     * Natural logarithm (base e, Napier's constant or Euler's number)
+     * @param cartesian The argument
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] logarithm(double[] cartesian) throws ArithmeticException {
         double[] polar = toPolar(cartesian);
@@ -222,30 +222,303 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian1
-     * @param cartesian2
-     * @return
+     * Logarithm with a custom base between two cartesian coordinates
+     * @param cartesian1 The base
+     * @param cartesian2 The argument
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] logarithm(double[] cartesian1, double[] cartesian2) {
         return divide(logarithm(cartesian2), logarithm(cartesian1));
     }
 
     /**
-     * 
-     * @param cartesian1
-     * @return
+     * The shortcut for the square root of a cartesian coordinate
+     * @param cartesian1 The argument
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] sqrt(double[] cartesian1) {
         return exponential(cartesian1, new double[] {0.5,0});
     }
 
     /**
-     * 
-     * @param cartesian1
-     * @return
+     * The shortcut for the cartesian coordinate times itself
+     * @param cartesian1 The argument
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] square(double[] cartesian1) {
         return exponential(cartesian1, new double[] {2,0});
     }
+
+    /**
+     * The shortcut to find the hypotenuse between infinite arguments
+     * @param cartesians Every coordinate
+     * @return The result as a new cartesian coordinate
+     */
+    protected static double[] hypotenuse(double[][] cartesians) {
+        return  NumberSystem.sqrt(
+                    NumberSystem.add(
+                        square(cartesians)
+                    )
+                );
+    }
+
+    /**
+     * The shortcut to find the coordinates of a circle √(r^2 - x^2)
+     * @param cartesian1 The radius
+     * @param cartesian2 The argument
+     * @return The result as a new cartesian coordinate
+     */
+    protected static double[] circle(double[] cartesian1, double[] cartesian2) {
+        return  NumberSystem.sqrt(
+                    NumberSystem.sub(
+                        NumberSystem.square(cartesian1)
+                        ,
+                        NumberSystem.square(cartesian2)
+                    )
+                );
+    }
+
+    /**
+     * The shortcut to find the square of multiple 
+     * @param cartesians
+     * @return
+     */
+    protected static double[][] square(double[] ... cartesians) {
+        double[][] result = new double[cartesians.length][2];
+        for (int i = 0; i < cartesians.length; i++) {
+            result[i] = NumberSystem.square(cartesians[i]);
+        }
+        return result;
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] sin(double[] cartesian) {
+
+        return  NumberSystem.divide(
+                    NumberSystem.sub(
+                        NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,1}))
+                        , 
+                        NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,-1}))
+                    )
+                    ,
+                    new double[] {0,2}
+                );
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] cos(double[] cartesian) {
+        return  NumberSystem.divide(
+                    NumberSystem.add(
+                        NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,1}))
+                        , 
+                        NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,-1}))
+                    )
+                    ,
+                    new double[] {2,0}
+                );
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] tan(double[] cartesian) {
+        return  NumberSystem.multiply(
+                    NumberSystem.divide(
+                        NumberSystem.sub(
+                            NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,1}))
+                            , 
+                            NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,-1}))
+                        )
+                        , 
+                        NumberSystem.add(
+                            NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,1}))
+                            , 
+                            NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,-1}))
+                        )
+                    ),
+                    new double[] {0,-1}
+                );
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] sec(double[] cartesian) {
+        return  NumberSystem.divide(
+                    new double[] {1,0}
+                    , 
+                    cos(cartesian)
+                );
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] csc(double[] cartesian) {
+        return  NumberSystem.divide(
+                    new double[] {1,0}
+                    , 
+                    sin(cartesian)
+                );
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] cot(double[] cartesian) {
+        return  NumberSystem.divide(
+                    new double[] {1,0}
+                    , 
+                    tan(cartesian)
+                );
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] asin(double[] cartesian) {
+        return  NumberSystem.multiply(
+                    new double[] {0,1}
+                    , 
+                    NumberSystem.logarithm(
+                        NumberSystem.sub(
+                            NumberSystem.sqrt(
+                                NumberSystem.sub(
+                                    new double[] {1,0}
+                                    , 
+                                    NumberSystem.square(cartesian)
+                                )
+                            )
+                            ,
+                            NumberSystem.multiply(
+                                cartesian
+                                , 
+                                new double[] {0,1}
+                            )
+                        )
+                    )
+                );
+    }
+    
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] acos(double[] cartesian) {
+        return  NumberSystem.sub(
+                    new double[] {Math.PI/2,0}
+                    ,
+                    asin(cartesian)
+                );
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] atan(double[] cartesian) {
+        return  NumberSystem.multiply(
+                    new double[] {0, -0.5}
+                    ,
+                    NumberSystem.sub(
+                        NumberSystem.logarithm(
+                            NumberSystem.sub(
+                                new double[] {0,1}
+                                , 
+                                cartesian
+                            )
+                        )
+                        ,
+                        NumberSystem.logarithm(
+                            NumberSystem.add(
+                                new double[] {0,1}
+                                , 
+                                cartesian
+                            )
+                        )
+                    )
+                );
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] asec(double[] cartesian) {
+        return  acos(NumberSystem.divide(
+                    new double[] {1,0}
+                    , 
+                    cartesian
+                ));
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] acsc(double[] cartesian) {
+        return  asin(NumberSystem.divide(
+                    new double[] {1,0}
+                    , 
+                    cartesian
+                ));
+    }
+
+    /**
+     * 
+     * @param cartesian
+     * @return
+     */
+    protected static double[] acot(double[] cartesian) {
+        return  atan(NumberSystem.divide(
+                    new double[] {1,0}
+                    , 
+                    cartesian
+                ));
+    }
+    
+    /**
+     * 
+     * @param cartesian
+     * @return
+     * @throws Exception 
+     */
+    protected static double[] toDegrees(double[] cartesian) throws Exception {
+        if (cartesian[1] != 0) throw new IllegalArgumentException("NUMBER MUST NOT BE COMPLEX");
+        return  new double[] {Math.toDegrees(cartesian[0]), 0};
+    }
+    
+    /**
+     * 
+     * @param cartesian
+     * @return
+     * @throws Exception
+     */
+    protected static double[] toRadians(double[] cartesian) throws Exception {
+        if (cartesian[1] != 0) throw new IllegalArgumentException("NUMBER MUST NOT BE COMPLEX");
+        return  new double[] {Math.toRadians(cartesian[0]), 0};
+    }
+
 }
