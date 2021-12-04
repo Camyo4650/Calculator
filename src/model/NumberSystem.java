@@ -1,3 +1,13 @@
+/** Final CIS 200 Project
+ * Cameron Pilchard
+ * Eli Forssberg
+ * Alex Whipple
+ * 
+ * This class stores every method for mathematical operations and functions of the sort.
+ * Some operations can be performed on complex numbers, where some can only be performed
+ * on integers or simply real numbers.
+ */ 
+
 package model;
 
 /**
@@ -7,6 +17,8 @@ package model;
  * methods for calculation.
  * Every method here returns a new double array with the modified content. The original
  * double arrays passed are not modified.
+ * @author Eli Forssberg
+ * @author Alex Whipple
  * @author Cameron Pilchard
  */
 public class NumberSystem {
@@ -242,7 +254,7 @@ public class NumberSystem {
 
     /**
      * The shortcut for the cartesian coordinate times itself
-     * @param cartesian1 The argument
+     * @param cartesian1 The argument 
      * @return The result as a new cartesian coordinate
      */
     protected static double[] square(double[] cartesian1) {
@@ -255,8 +267,8 @@ public class NumberSystem {
      * @return The result as a new cartesian coordinate
      */
     protected static double[] hypotenuse(double[][] cartesians) {
-        return  NumberSystem.sqrt(
-                    NumberSystem.add(
+        return  sqrt(
+                    add(
                         square(cartesians)
                     )
                 );
@@ -269,40 +281,40 @@ public class NumberSystem {
      * @return The result as a new cartesian coordinate
      */
     protected static double[] circle(double[] cartesian1, double[] cartesian2) {
-        return  NumberSystem.sqrt(
-                    NumberSystem.sub(
-                        NumberSystem.square(cartesian1)
+        return  sqrt(
+                    sub(
+                        square(cartesian1)
                         ,
-                        NumberSystem.square(cartesian2)
+                        square(cartesian2)
                     )
                 );
     }
 
     /**
-     * The shortcut to find the square of multiple 
-     * @param cartesians
-     * @return
+     * The shortcut to find the square (x^2) of multiple cartesian coordinates
+     * @param cartesians The coordinates
+     * @return The squares in their respective order
      */
     protected static double[][] square(double[] ... cartesians) {
         double[][] result = new double[cartesians.length][2];
         for (int i = 0; i < cartesians.length; i++) {
-            result[i] = NumberSystem.square(cartesians[i]);
+            result[i] = square(cartesians[i]);
         }
         return result;
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the sin value of a cartesian coordinate. Derived from Euler's formula.
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] sin(double[] cartesian) {
-
-        return  NumberSystem.divide(
-                    NumberSystem.sub(
-                        NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,1}))
+        //
+        return  divide(
+                    sub(
+                        exponential(multiply(cartesian, new double[] {0,1}))
                         , 
-                        NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,-1}))
+                        exponential(multiply(cartesian, new double[] {0,-1}))
                     )
                     ,
                     new double[] {0,2}
@@ -310,16 +322,16 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the cos value of a cartesian coordinate. Derived from Euler's formula.
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] cos(double[] cartesian) {
-        return  NumberSystem.divide(
-                    NumberSystem.add(
-                        NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,1}))
+        return  divide(
+                    add(
+                        exponential(multiply(cartesian, new double[] {0,1}))
                         , 
-                        NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,-1}))
+                        exponential(multiply(cartesian, new double[] {0,-1}))
                     )
                     ,
                     new double[] {2,0}
@@ -327,23 +339,23 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the tan value of a cartesian coordinate. Derived from Euler's formula.
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] tan(double[] cartesian) {
-        return  NumberSystem.multiply(
-                    NumberSystem.divide(
-                        NumberSystem.sub(
-                            NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,1}))
+        return  multiply(
+                    divide(
+                        sub(
+                            exponential(multiply(cartesian, new double[] {0,1}))
                             , 
-                            NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,-1}))
+                            exponential(multiply(cartesian, new double[] {0,-1}))
                         )
                         , 
-                        NumberSystem.add(
-                            NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,1}))
+                        add(
+                            exponential(multiply(cartesian, new double[] {0,1}))
                             , 
-                            NumberSystem.exponential(NumberSystem.multiply(cartesian, new double[] {0,-1}))
+                            exponential(multiply(cartesian, new double[] {0,-1}))
                         )
                     ),
                     new double[] {0,-1}
@@ -351,12 +363,12 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the tan value of a cartesian coordinate. 1/cos(x)
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] sec(double[] cartesian) {
-        return  NumberSystem.divide(
+        return  divide(
                     new double[] {1,0}
                     , 
                     cos(cartesian)
@@ -364,12 +376,12 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the tan value of a cartesian coordinate. 1/sin(x)
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] csc(double[] cartesian) {
-        return  NumberSystem.divide(
+        return  divide(
                     new double[] {1,0}
                     , 
                     sin(cartesian)
@@ -377,12 +389,12 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the tan value of a cartesian coordinate. 1/tan(x)
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] cot(double[] cartesian) {
-        return  NumberSystem.divide(
+        return  divide(
                     new double[] {1,0}
                     , 
                     tan(cartesian)
@@ -390,25 +402,25 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the inverse sin value of a cartesian coordinate. Derived from Euler's formula.
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] asin(double[] cartesian) {
-        return  NumberSystem.multiply(
+        return  multiply(
                     new double[] {0,1}
                     , 
-                    NumberSystem.logarithm(
-                        NumberSystem.sub(
-                            NumberSystem.sqrt(
-                                NumberSystem.sub(
+                    logarithm(
+                        sub(
+                            sqrt(
+                                sub(
                                     new double[] {1,0}
                                     , 
-                                    NumberSystem.square(cartesian)
+                                    square(cartesian)
                                 )
                             )
                             ,
-                            NumberSystem.multiply(
+                            multiply(
                                 cartesian
                                 , 
                                 new double[] {0,1}
@@ -419,12 +431,12 @@ public class NumberSystem {
     }
     
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the inverse cos value of a cartesian coordinate. Derived from Euler's formula.
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] acos(double[] cartesian) {
-        return  NumberSystem.sub(
+        return  sub(
                     new double[] {Math.PI/2,0}
                     ,
                     asin(cartesian)
@@ -432,25 +444,25 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the inverse tan value of a cartesian coordinate. Derived from Euler's formula.
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] atan(double[] cartesian) {
-        return  NumberSystem.multiply(
+        return  multiply(
                     new double[] {0, -0.5}
                     ,
-                    NumberSystem.sub(
-                        NumberSystem.logarithm(
-                            NumberSystem.sub(
+                    sub(
+                        logarithm(
+                            sub(
                                 new double[] {0,1}
                                 , 
                                 cartesian
                             )
                         )
                         ,
-                        NumberSystem.logarithm(
-                            NumberSystem.add(
+                        logarithm(
+                            add(
                                 new double[] {0,1}
                                 , 
                                 cartesian
@@ -461,12 +473,12 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the inverse sec value of a cartesian coordinate. Derived from Euler's formula.
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] asec(double[] cartesian) {
-        return  acos(NumberSystem.divide(
+        return  acos(divide(
                     new double[] {1,0}
                     , 
                     cartesian
@@ -474,12 +486,12 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the inverse csc value of a cartesian coordinate. Derived from Euler's formula.
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] acsc(double[] cartesian) {
-        return  asin(NumberSystem.divide(
+        return  asin(divide(
                     new double[] {1,0}
                     , 
                     cartesian
@@ -487,12 +499,12 @@ public class NumberSystem {
     }
 
     /**
-     * 
-     * @param cartesian
-     * @return
+     * The shortcut to find the inverse cot value of a cartesian coordinate. Derived from Euler's formula.
+     * @param cartesian The cartesian coordinate
+     * @return The result as a new cartesian coordinate
      */
     protected static double[] acot(double[] cartesian) {
-        return  atan(NumberSystem.divide(
+        return  atan(divide(
                     new double[] {1,0}
                     , 
                     cartesian
@@ -500,10 +512,10 @@ public class NumberSystem {
     }
     
     /**
-     * 
-     * @param cartesian
-     * @return
-     * @throws Exception 
+     * Converts a real number from radians to degrees
+     * @param cartesian The real number
+     * @return The result
+     * @throws Exception Thrown when the number is complex
      */
     protected static double[] toDegrees(double[] cartesian) throws Exception {
         if (cartesian[1] != 0) throw new IllegalArgumentException("NUMBER MUST NOT BE COMPLEX");
@@ -511,14 +523,38 @@ public class NumberSystem {
     }
     
     /**
-     * 
-     * @param cartesian
-     * @return
-     * @throws Exception
+     * Converts a real number from degrees to radians
+     * @param cartesian The real number
+     * @return The result
+     * @throws Exception Thrown when the number is complex
      */
     protected static double[] toRadians(double[] cartesian) throws Exception {
         if (cartesian[1] != 0) throw new IllegalArgumentException("NUMBER MUST NOT BE COMPLEX");
         return  new double[] {Math.toRadians(cartesian[0]), 0};
+    }
+    
+    /**
+     * Finds the factorial of an integer (real only)
+     * @param cartesian The integer number
+     * @return The result
+     * @throws Exception Thrown when the number is not real and/or is not an integer
+     */
+    protected static double[] factorial(double[] cartesian) throws Exception {
+    	double[] facAnswer = {1.0, 0.0};
+    	//System.out.println(cartesian[0] + " " + cartesian[1]);
+    	if(cartesian[0] < 0) {
+    		throw new IllegalArgumentException("NUMBER MUST BE POSITIVE");
+    	}
+    	if(cartesian[0]%1 != 0) {
+    		throw new IllegalArgumentException("NUMBER MUST BE AN INTEGER");
+    	}
+        if (cartesian[1] != 0) {
+            throw new IllegalArgumentException("NUMBER MUST BE REAL");
+        }
+    	for(int i = 1; i <= cartesian[0]; i++) {
+    		facAnswer[0] = facAnswer[0] * i;
+    	}
+    	return facAnswer;
     }
 
 }

@@ -1,8 +1,22 @@
+/** Final CIS 200 Project
+ * Cameron Pilchard
+ * Eli Forssberg
+ * Alex Whipple
+ * 
+ * This class performs operations on this expression as well as all other sub expressions 
+ * in the expression "tree".
+ */ 
+
 package model.arithmetic;
 
 import java.util.ArrayList;
 
 /**
+ * Stores multiple sub expressions. Extends the Expression abstract class.
+ * Operations also store an operator, which is the defining property of how 
+ * this class will calculate its result.
+ * @author Eli Forssberg
+ * @author Alex Whipple
  * @author Cameron Pilchard
  */
 public class Operation extends Expression {
@@ -11,6 +25,11 @@ public class Operation extends Expression {
 
     protected boolean isFunction = false;
 
+    /**
+     * A constructor that passes in an operator and a list of cartesian arguments
+     * @param operator The Operator enum type
+     * @param args Cartesian arguments
+     */
     public Operation(Operator operator, double[] ... args) {
         this.operator = operator;
         this.operations = new ArrayList<>();
@@ -18,22 +37,40 @@ public class Operation extends Expression {
             this.operations.add(new Constant(arg));
     }
 
+    /**
+     * An overloaded constructor that passes in an operator and a list of sub expressions
+     * @param operator The Operator enum type
+     * @param args Cartesian arguments
+     */
     public Operation(Operator operator, Expression ... operations) {
         this.operator = operator;
         this.operations = new ArrayList<>();
         for (Expression operation : operations)
             this.operations.add(operation);
     }
+    
 
+    /**
+     * This public method solves this expression with the protected solve method 
+     * and sets the output as such.
+     * @param isPolar If the result should be displayed in polar coordinates
+     * @return The cartesian (or polar) result
+     * @throws Exception For arithmetic errors like x/0 or log 0
+     */
     @Override
     public double[] solve(boolean isPolar) throws Exception {
         return isPolar ? toPolar(this.solve()) : this.solve();
     }
 
     /**
-     * 
-     * @return
-     * @throws ArithmeticException
+     * This protected method will solve this Expression using the arguments passed.
+     * This method switches by the Operator enum of this Expression and calls the appropriate 
+     * method defined in the {@link model.NumberSystem NumberSystem} class.
+     * This method is recursive, and solves the sub expressions first before solving this Expression.
+     * This is working the expression tree from the bottom up.
+     * @see model.NumberSystem
+     * @return The cartesian result
+     * @throws ArithmeticException For arithmetic errors like x/0 or log 0
      */
     @Override
     protected double[] solve() throws Exception {
@@ -129,17 +166,10 @@ public class Operation extends Expression {
         case IMAG:
             solution = imaginary(cartesians[0]);
             break;
-        case DER:
+        case FACT:
+            solution = factorial(cartesians[0]);
             break;
-        case FAC:
-            break;
-        case INT:
-            break;
-        case LIM:
-            break;
-        case SUM:
-            break;
-        default:
+        default: // not necessary since StringProcessor throws an error for invalid Operators
             break;
         }
         return solution;

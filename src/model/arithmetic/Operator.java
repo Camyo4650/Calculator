@@ -1,5 +1,23 @@
+/** Final CIS 200 Project
+ * Cameron Pilchard
+ * Eli Forssberg
+ * Alex Whipple
+ * 
+ * This enum stores all the possible operators of this calculator.
+ * Respective to the README file.
+ */ 
+
 package model.arithmetic;
 
+/**
+ * These are enums for every supported Operator by this calculator. 
+ * Each enum value calls the constructor and sets a value for the number of 
+ * arguments required by the function. 
+ * If the argument is -1, then the Operator supports infinitely many.
+ * @author Eli Forssberg
+ * @author Alex Whipple
+ * @author Cameron Pilchard
+ */
 public enum Operator {
     ABS     (1),
     ADD     (-1),
@@ -30,36 +48,31 @@ public enum Operator {
         ACSC     (1),
         ACOT     (1),
 
-    REAL(1),
-    IMAG(1),
+    REAL    (1),
+    IMAG    (1),
 
-    DEG(1),
-    RAD(1),
-
-    LIM     (1),
-    DER     (1),
-    INT     (1),
-    SUM     (1),
-    FAC     (1);
+    DEG     (1),
+    RAD     (1),
+    FACT     (1);
     
     private int args;
-    private int argsMax;
 
+    /**
+     * This creates a new Operator enum type.
+     * @param args The number of arguments supported by this Operator. 
+     * If the argument is -1, then the Operator supports infinitely many.
+     */
     private Operator(int args) {
         this.args = args;
-        this.argsMax = args;
     }
 
-    private Operator(int args, int argsMax) {
-        this.args = args;
-        this.argsMax = argsMax;
-    }
-
+    /**
+     * Getter method for the number of arguments supported by this Operator.
+     * Used in the {@link model.StringProcessor#parseExpr(String) StringProcessor} class.
+     * @see model.StringProcessor#parseExpr(String) StringProcessor#parseExpr(String)
+     * @return The number of arguments supported by this Operator.
+     */
     public int getArgs() {
         return this.args;
-    }
-
-    public int getMaxArgs() {
-        return this.argsMax;
     }
 }

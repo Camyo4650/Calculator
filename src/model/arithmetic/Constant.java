@@ -3,14 +3,16 @@
  * Eli Forssberg
  * Alex Whipple
  * 
- * This class represents 
+ * This class represents the mathematical constant of a cartesian or polar coordinate (complex number)
  */
 
 package model.arithmetic;
 
 /**
+ * Acts as a mathematical constant with only a real part and an imaginary part.
  * 
- * 
+ * @author Eli Forssberg
+ * @author Alex Whipple
  * @author Cameron Pilchard
  */
 public class Constant extends Expression {
