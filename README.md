@@ -38,7 +38,7 @@ HYPOT(1,2)
 If and only if the last character of the expression string is the letter "P", case insensitive, then the result will be displayed in polar form.
 Example:
 ```
-EXP(0:1) -> 1.0 * exp(i1.0)
+EXP(0:1)P -> 1.0 * exp(i1.0)
 ```
 Some functions require as little as one argument, where as some operators (w/ communicative properties) can support infinitely many.
 Non-communicative operators will **always** utilize operands left to right.
@@ -86,7 +86,7 @@ Trig functions
 	ACSC     		1				Arccosecant
 	ACOT     		1				Arccotangent
 ```
-Every single function/operator listed has been extended into the complex field.
+* FACT takes only natural numbers, and RAD/DEG only take real numbers.
 
 **WARNING:**
 - It is imperative that make sure you properly close input functions with parentheses. These are used to parse equations.
