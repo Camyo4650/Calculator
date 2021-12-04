@@ -35,6 +35,11 @@ ADD(1,2,3,4,5,EXP(1))
 HYPOT(1,2)
 
 ```
+If and only if the last character of the expression string is the letter "P", case insensitive, then the result will be displayed in polar form.
+Example:
+```
+EXP(0:1) -> 1.0 * exp(i1.0)
+```
 Some functions require as little as one argument, where as some operators (w/ communicative properties) can support infinitely many.
 Non-communicative operators will **always** utilize operands left to right.
 
@@ -54,6 +59,7 @@ Elementary Operators
 	POW      		2		a1^a2		Exponentiation
 	LOG      		2		base a1		Logarithm (base a1)
 						(arg a2)
+	FACT			1				Factorial
 
 Trig functions
 	SQRT     		1				Square Root Shortcut
